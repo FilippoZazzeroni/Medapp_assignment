@@ -3,7 +3,6 @@ import 'package:medapp_assignment/models/medicine.dart';
 import 'package:medapp_assignment/shared/color_palette.dart';
 import 'package:medapp_assignment/supporting_files/constants/font_constants.dart';
 import 'package:medapp_assignment/supporting_files/constants/geometry_constants.dart';
-import 'package:intl/intl.dart';
 import 'moment_content.dart';
 
 class ScheduleListItem extends StatelessWidget {
@@ -35,10 +34,10 @@ class ScheduleListItem extends StatelessWidget {
               color: momentContent.contentStyle.backgroundColor,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
-                      bottomRight: momentContent.isCollapsed ? Radius.circular(0) : Radius.circular(GeometryConstants.borderRadius),
-                      bottomLeft: momentContent.isCollapsed ? Radius.circular(0) : Radius.circular(GeometryConstants.borderRadius),
-                      topLeft: Radius.circular(GeometryConstants.borderRadius),
-                      topRight: Radius.circular(GeometryConstants.borderRadius))),
+                      bottomRight: momentContent.isCollapsed ? const Radius.circular(0) : const Radius.circular(GeometryConstants.borderRadius),
+                      bottomLeft: momentContent.isCollapsed ? const Radius.circular(0) : const Radius.circular(GeometryConstants.borderRadius),
+                      topLeft: const Radius.circular(GeometryConstants.borderRadius),
+                      topRight: const Radius.circular(GeometryConstants.borderRadius))),
               elevation: GeometryConstants.cardElevation,
               child: Row(
                 children: [
@@ -80,7 +79,8 @@ class ScheduleListItem extends StatelessWidget {
                       color: momentContent.contentStyle.collapsedStyle.iconColor,
                       height: 5,
                     ),
-                  ]..addAll(medicineWidgets),
+                    ...medicineWidgets,
+                  ],
                 ),
               )
           ],

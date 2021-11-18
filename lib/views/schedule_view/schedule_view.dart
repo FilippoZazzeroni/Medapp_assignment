@@ -18,39 +18,36 @@ class ScheduleView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => ScheduleViewModel(),
-      child: Scaffold(
-        backgroundColor: ColorPalette.background,
-        body: Consumer<ScheduleViewModel>(builder: (context, viewModel, child) {
-          return GroupedListView(
-              elements: viewModel.contents.keys.toList(),
-              groupBy: (MomentContent content) => content.date,
-              groupHeaderBuilder: (MomentContent content) {
-                return Padding(
-                    padding: const EdgeInsets.all(GeometryConstants.mediumMargin),
-                    child: Text(
-                      _getFormatteDateFrom(content.date),
-                      style: const TextStyle(fontSize: FontConstant.headerSize),
-                    ));
-              },
-              groupSeparatorBuilder: (DateTime date) {
-                return Text(_getFormatteDateFrom(date));
-              },
-              itemBuilder: (context, MomentContent content) {
-                return ScheduleListItem(
-                    onCardClickCallback: () {
-                      content.isCollapsed = !content.isCollapsed;
-                      viewModel.setState();
-                    },
-                    onClickMomentCallback: () {
-                      content.isSelected = !content.isSelected;
-                      viewModel.setMomentState(content);
-                    },
-                    momentContent: content);
-              });
-        }),
-      ),
+    return Scaffold(
+      backgroundColor: ColorPalette.background,
+      body: Consumer<ScheduleViewModel>(builder: (context, viewModel, child) {
+        return GroupedListView(
+            elements: viewModel.contents.keys.toList(),
+            groupBy: (MomentContent content) => content.date,
+            groupHeaderBuilder: (MomentContent content) {
+              return Padding(
+                  padding: const EdgeInsets.all(GeometryConstants.mediumMargin),
+                  child: Text(
+                    _getFormatteDateFrom(content.date),
+                    style: const TextStyle(fontSize: FontConstant.headerSize),
+                  ));
+            },
+            groupSeparatorBuilder: (DateTime date) {
+              return Text(_getFormatteDateFrom(date));
+            },
+            itemBuilder: (context, MomentContent content) {
+              return ScheduleListItem(
+                  onCardClickCallback: () {
+                    content.isCollapsed = !content.isCollapsed;
+                    viewModel.setState();
+                  },
+                  onClickMomentCallback: () {
+                    content.isSelected = !content.isSelected;
+                    viewModel.setMomentState(content);
+                  },
+                  momentContent: content);
+            });
+      }),
     );
   }
 

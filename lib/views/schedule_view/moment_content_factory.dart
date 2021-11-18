@@ -17,13 +17,21 @@ class MomentContentFactory {
   MomentContent makeMomentContent() {
     switch (moment.type) {
       case MomentType.breakfast:
-        return MomentContent(title: "Breakfast", icon: Icons.breakfast_dining, date: moment.date, medicines: moment.medicines);
+        final content = MomentContent(title: "Breakfast", icon: Icons.breakfast_dining, date: moment.date, medicines: moment.medicines);
+        content.isSelected = moment.medicines[0].isTaken;
+        return content;
       case MomentType.lunch:
-        return MomentContent(title: "Lunch", icon: Icons.lunch_dining, date: moment.date, medicines: moment.medicines);
+        final content = MomentContent(title: "Lunch", icon: Icons.lunch_dining, date: moment.date, medicines: moment.medicines);
+        content.isSelected = moment.medicines[0].isTaken;
+        return content;
       case MomentType.atWork:
-        return MomentContent(title: "At work", icon: Icons.work, date: moment.date, medicines: moment.medicines);
+        final content = MomentContent(title: "At work", icon: Icons.work, date: moment.date, medicines: moment.medicines);
+        content.isSelected = moment.medicines[0].isTaken;
+        return content;
       case MomentType.badTime:
-        return MomentContent(title: "bed", icon: Icons.bedtime, date: moment.date, medicines: moment.medicines);
+        final content = MomentContent(title: "bed", icon: Icons.bedtime, date: moment.date, medicines: moment.medicines);
+        content.isSelected = moment.medicines[0].isTaken;
+        return content;
     }
   }
 }
