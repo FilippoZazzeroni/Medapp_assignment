@@ -6,6 +6,12 @@ abstract class MomentContentStyle {
 
   /// The color of all the content. it inclueds the icons and the text
   abstract final Color contentColor;
+
+  abstract final CollapsedStyle collapsedStyle;
+}
+
+abstract class CollapsedStyle {
+  abstract final Color iconColor;
 }
 
 class SelectedMomentContentStyle implements MomentContentStyle {
@@ -14,6 +20,14 @@ class SelectedMomentContentStyle implements MomentContentStyle {
 
   @override
   final Color contentColor = Colors.white;
+
+  @override
+  final CollapsedStyle collapsedStyle = SelectedCollapsedStyle();
+}
+
+class SelectedCollapsedStyle implements CollapsedStyle {
+  @override
+  final Color iconColor = ColorPalette.mantis;
 }
 
 class UnselectedMomentContentStyle implements MomentContentStyle {
@@ -22,4 +36,12 @@ class UnselectedMomentContentStyle implements MomentContentStyle {
 
   @override
   final Color contentColor = Colors.black;
+
+  @override
+  final CollapsedStyle collapsedStyle = UnselectedCollapsedStyle();
+}
+
+class UnselectedCollapsedStyle implements CollapsedStyle {
+  @override
+  final Color iconColor = Colors.grey;
 }

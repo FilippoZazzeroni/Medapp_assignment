@@ -39,6 +39,10 @@ class ScheduleView extends StatelessWidget {
               },
               itemBuilder: (context, MomentContent content) {
                 return ScheduleListItem(
+                    onCardClickCallback: () {
+                      content.isCollapsed = !content.isCollapsed;
+                      viewModel.setState();
+                    },
                     onClickMomentCallback: () {
                       content.isSelected = !content.isSelected;
                       viewModel.setMomentState(content);
